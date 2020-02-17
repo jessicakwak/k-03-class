@@ -29,8 +29,11 @@ class Car {
   }
 }
 
-let myCar = new Car("Ford", "Focus", "Black");
-console.log(myCar);
+const buildCar = (brand, model, color) => {
+  return new Car(brand, model, color);
+};
+
+console.log(buildCar("Ford", "Focus", "Black"));
 
 //030304
 class Animal {
@@ -94,3 +97,29 @@ class Traveler {
 }
 
 console.log(new Traveler("Jessica").pickRandom());
+
+//030307
+// class Product {
+//   constructor(name, price) {
+//     this.name = name;
+//     this.price = price;
+//   }
+//   applyDiscount(discount) {
+//     this.price *= 1 - discount / 100;
+//   }
+// }
+//
+// class Receipt {
+//   constructor(products) {
+//     this.products = products;
+//   }
+//   calcTotal() {
+//     let total = 0;
+//     this.products.forEach(e => {
+//       total += e.price;
+//     });
+//     return total;
+//   }
+// }
+//
+// const getReceipt = (labels, prices, discounts) => {};
