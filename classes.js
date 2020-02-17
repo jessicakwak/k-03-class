@@ -138,8 +138,13 @@ const getReceipt = (labels, prices, discounts) => {
     //Then make a receipt of this array of products
     let myReceipt = new Receipt(productArr);
     //log the receipt and total
-    console.log(myReceipt);
-    console.log(myReceipt.calcTotal());
+    console.log("----------------------");
+    myReceipt.products.forEach(e => {
+      console.log(`| ${e.name}   |  $${e.price.toFixed(2)} |`);
+    });
+    console.log("----------------------");
+    console.log(`| Total    | $${myReceipt.calcTotal().toFixed(2)} |`);
+    console.log("----------------------");
   }
 };
 let myLabels = ["apple", "bananas", "bread", "cookies", "broccoli", "onions"];
