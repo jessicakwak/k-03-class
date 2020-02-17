@@ -153,7 +153,7 @@ const getReceipt = (labels, prices, discounts) => {
       // }
     });
 
-    for (let i = 0; i < maxLength + maxLengthPrice + 12; i++) {
+    for (let i = 0; i < maxLength + maxLengthPrice + 13; i++) {
       line += "-";
     }
 
