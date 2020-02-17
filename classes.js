@@ -127,7 +127,7 @@ const getReceipt = (labels, prices, discounts) => {
   ) {
     return "please enter matching labels, prices and discounts array";
   } else {
-    //First create an array of products with labels and prices with discounts
+    //First create an array of products with labels and prices
     let productArr = labels.map((e, i) => {
       return new Product(e, prices[i]);
     });
@@ -137,10 +137,30 @@ const getReceipt = (labels, prices, discounts) => {
     });
     //Then make a receipt of this array of products
     let myReceipt = new Receipt(productArr);
-    //log the receipt and total
-    console.log("----------------------");
+    //first, find the longest name within Products arrays
+    let maxLength = 0;
+    let maxLengthPrice = 0;
+    let line = "";
     myReceipt.products.forEach(e => {
-      console.log(`| ${e.name}   |  $${e.price.toFixed(2)} |`);
+      if (e.name.length > maxLength) {
+        maxLength = e.name.length;
+      }
+    });
+
+    for (let i = 0; i < maxLength + 14; i++) {
+      line += "-";
+    }
+
+    //log the receipt and total
+    console.log(line);
+    myReceipt.products.forEach(e => {
+      let label = e.name;
+      if (e.name.length < maxLength) {
+        for (let i = 0; i < maxLength - e.name.length; i++) {
+          label += " ";
+        }
+      }
+      console.log(`| ${label}  |  $${e.price.toFixed(2)} |`);
     });
     console.log("----------------------");
     console.log(`| Total    | $${myReceipt.calcTotal().toFixed(2)} |`);
