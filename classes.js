@@ -78,3 +78,19 @@ let threeNames = ["Alice", "Bernard", "Catherine"];
 let jobs = ["Accountant", "Biz Manager", "Cleaner", "Director"];
 console.log(makeEmployees(names, jobs));
 console.log(makeEmployees(threeNames, jobs));
+
+//030306
+class Traveler {
+  constructor(name) {
+    this.cities = ["Bangkok", "Tokyo", "New York", "Rome", "Berlin"];
+    this.name = name;
+    this.city = this.cities[0];
+  }
+
+  pickRandom() {
+    this.city = this.cities[Math.floor(Math.random() * 5)];
+    return `${this.name} is going to ${this.city}`;
+  }
+}
+
+console.log(new Traveler("Jessica").pickRandom());
