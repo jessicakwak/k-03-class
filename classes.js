@@ -68,10 +68,7 @@ const makeEmployees = (nameArr, jobArr) => {
     return "Please enter matching arrays of names and jobs";
   } else {
     return nameArr.map((e, i) => {
-      return {
-        name: e,
-        job: jobArr[i]
-      };
+      return new Employee(e, jobArr[i]);
     });
   }
 };
