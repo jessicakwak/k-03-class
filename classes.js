@@ -152,3 +152,15 @@ let myPrices = [100, 200, 500, 1000, 40, 20];
 let myDiscounts = [10, 25, 20, 15, 5, 10];
 
 getReceipt(myLabels, myPrices, myDiscounts);
+
+//030308
+class Point {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+  plus(p) {
+    return new Point(this.x + p.x, this.y + p.y);
+  }
+}
+console.log(new Point(1, 2).plus(new Point(2, 1)));
