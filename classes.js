@@ -149,7 +149,6 @@ const getReceipt = (labels, prices, discounts) => {
         maxLengthPrice = e.price.toString().length;
       }
     });
-    console.log(maxLengthPrice);
 
     for (let i = 0; i < maxLength + maxLengthPrice + 12; i++) {
       line += "-";
