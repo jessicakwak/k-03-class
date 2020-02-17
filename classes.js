@@ -51,3 +51,30 @@ console.log(new Animal("Cat", "meows").speak());
 console.log(new Animal("Cow", "eats", "moo").speak());
 console.log(new Animal("Lion", "roars").speak());
 console.log(new Animal("Duck", "plays", "quack").speak());
+
+//030305
+class Employee {
+  constructor(name, job) {
+    this.name = name;
+    this.job = job;
+  }
+}
+
+const makeEmployees = (nameArr, jobArr) => {
+  if (nameArr.length !== jobArr.length) {
+    return "Please enter matching arrays of names and jobs";
+  } else {
+    return nameArr.map((e, i) => {
+      return {
+        name: e,
+        job: jobArr[i]
+      };
+    });
+  }
+};
+
+let names = ["Alice", "Bernard", "Catherine", "David"];
+let threeNames = ["Alice", "Bernard", "Catherine"];
+let jobs = ["Accountant", "Biz Manager", "Cleaner", "Director"];
+console.log(makeEmployees(names, jobs));
+console.log(makeEmployees(threeNames, jobs));
