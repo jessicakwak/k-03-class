@@ -138,6 +138,7 @@ const getReceipt = (labels, prices, discounts) => {
     //Then make a receipt of this array of products
     let myReceipt = new Receipt(productArr);
     //first, find the longest name within Products arrays
+    //set the total price as the max length for price tag
     let maxLength = 0;
     let maxLengthPrice = myReceipt.calcTotal().toString().length;
     let line = "";
@@ -145,9 +146,11 @@ const getReceipt = (labels, prices, discounts) => {
       if (e.name.length > maxLength) {
         maxLength = e.name.length;
       }
-      if (e.price.toString().length > maxLengthPrice) {
-        maxLengthPrice = e.price.toString().length;
-      }
+      //Realized I don't need this block. Length of total price priceTag
+      //is always the maximum length for price tag
+      // if (e.price.toString().length > maxLengthPrice) {
+      //   maxLengthPrice = e.price.toString().length;
+      // }
     });
 
     for (let i = 0; i < maxLength + maxLengthPrice + 12; i++) {
@@ -159,11 +162,13 @@ const getReceipt = (labels, prices, discounts) => {
     myReceipt.products.forEach(e => {
       let label = e.name;
       let priceTag = e.price.toFixed(2);
+      //add spaces for labels shorter than the longest label
       if (e.name.length < maxLength) {
         for (let i = 0; i < maxLength - e.name.length; i++) {
           label += " ";
         }
       }
+      //similarly add spaces to the price tag
       if (e.price.toString().length < maxLengthPrice) {
         for (let i = 0; i < maxLengthPrice - e.price.toString().length; i++) {
           priceTag += " ";
@@ -172,6 +177,7 @@ const getReceipt = (labels, prices, discounts) => {
       console.log(`| ${label}  |  $${priceTag} |`);
     });
     console.log(line);
+    //Similar with the total line. compare it to the longest label
     let totalString = "Total";
     if (5 < maxLength) {
       for (let i = 0; i < maxLength - 5; i++) {
@@ -182,8 +188,9 @@ const getReceipt = (labels, prices, discounts) => {
     console.log(line);
   }
 };
+//test
 let myLabels = ["apple", "bananas", "bread", "cookies", "broccoli", "onions"];
-let myPrices = [100, 20, 500, 100, 40, 20];
+let myPrices = [10000, 20, 500, 100, 40, 20];
 let myDiscounts = [10, 25, 20, 15, 5, 10];
 
 getReceipt(myLabels, myPrices, myDiscounts);
