@@ -139,15 +139,19 @@ const getReceipt = (labels, prices, discounts) => {
     let myReceipt = new Receipt(productArr);
     //first, find the longest name within Products arrays
     let maxLength = 0;
-    let maxLengthPrice = 0;
+    let maxLengthPrice = myReceipt.calcTotal().toString().length;
     let line = "";
     myReceipt.products.forEach(e => {
       if (e.name.length > maxLength) {
         maxLength = e.name.length;
       }
+      if (e.price.toString().length > maxLengthPrice) {
+        maxLengthPrice = e.price.toString().length;
+      }
     });
+    console.log(maxLengthPrice);
 
-    for (let i = 0; i < maxLength + 14; i++) {
+    for (let i = 0; i < maxLength + maxLengthPrice + 12; i++) {
       line += "-";
     }
 
@@ -155,20 +159,32 @@ const getReceipt = (labels, prices, discounts) => {
     console.log(line);
     myReceipt.products.forEach(e => {
       let label = e.name;
+      let priceTag = e.price.toFixed(2);
       if (e.name.length < maxLength) {
         for (let i = 0; i < maxLength - e.name.length; i++) {
           label += " ";
         }
       }
-      console.log(`| ${label}  |  $${e.price.toFixed(2)} |`);
+      if (e.price.toString().length < maxLengthPrice) {
+        for (let i = 0; i < maxLengthPrice - e.price.toString().length; i++) {
+          priceTag += " ";
+        }
+      }
+      console.log(`| ${label}  |  $${priceTag} |`);
     });
-    console.log("----------------------");
-    console.log(`| Total    | $${myReceipt.calcTotal().toFixed(2)} |`);
-    console.log("----------------------");
+    console.log(line);
+    let totalString = "Total";
+    if (5 < maxLength) {
+      for (let i = 0; i < maxLength - 5; i++) {
+        totalString += " ";
+      }
+    }
+    console.log(`| ${totalString}  |  $${myReceipt.calcTotal().toFixed(2)} |`);
+    console.log(line);
   }
 };
 let myLabels = ["apple", "bananas", "bread", "cookies", "broccoli", "onions"];
-let myPrices = [100, 200, 500, 1000, 40, 20];
+let myPrices = [100, 20, 500, 100, 40, 20];
 let myDiscounts = [10, 25, 20, 15, 5, 10];
 
 getReceipt(myLabels, myPrices, myDiscounts);
